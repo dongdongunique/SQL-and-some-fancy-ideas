@@ -1,4 +1,4 @@
-//Let me introduce some basic operations of sequential list whose basic element is a strcuture featured by the information of a single student(ID,Name,Age,Grade)
+//Let me introduce some basic operations of sequential list of which basic element is a strcuture featured by the information of a single student(ID,Name,Age,Grade)
 struct node
 {
   public:
