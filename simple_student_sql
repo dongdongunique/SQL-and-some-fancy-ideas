@@ -1,0 +1,75 @@
+//Let me introduce some basic operations of sequential list whose basic element is a strcuture featured by the information of a single student(ID,Name,Age,Grade)
+struct node
+{
+  public:
+        int id[100];
+        string name[100];
+        int age[100];
+        int grade[100];
+        int len;
+        node()
+        {
+           memset(id,0,sizeof(id));
+           memset(age,0,sizeof(age));
+           memset(grade,0,sizeof(grade));
+           len=0;
+        }
+        ~node()
+        {
+            printf("Sequential list has been cleared\n");
+        }
+}stu;
+// the main form of storage of the SQL
+typedef struct
+{
+    int id;
+    string name;
+    int age;
+    int grade;
+}STU;//serve as a basic element of every student
+
+//SQL Delete function by virtue of recursion
+int Delete(int i,int j)
+{
+    if(stu.len>100||i<=0||i>stu.len)return 0;
+    stu.age[j]=stu.age[j+1];
+    stu.grade[j]=stu.grade[j+1];
+    stu.id[j]=stu.id[j+1];
+    stu.name[j]=stu.name[j+1];
+    if(j==stu.len-2){--stu.len;return 1;}
+    if(Delete(i,j+1))
+    return 1;
+}
+//SQL insert function by means of recursion
+int insert(STU temp,int i,int j)
+{
+    if(stu.len>100||i<0||i>stu.len)return 0;
+    stu.age[j+1]=stu.age[j];
+    stu.grade[j+1]=stu.grade[j];
+    stu.id[j+1]=stu.id[j];
+    stu.name[j+1]=stu.name[j];
+    if(i-1==j)
+    {
+        stu.age[j]=temp.age;
+        stu.grade[j]=temp.grade;
+        stu.id[j]=temp.id;
+        stu.name[j]=temp.name;
+        ++stu.len;
+        return 1;
+    }
+    if(insert(temp,i,j-1))return 1;
+}
+//Also when the storage of a List runs out, we have to push_back some element into it.
+int push_back(STU temp)
+{
+        stu.age[stu.len]=temp.age;
+        stu.grade[stu.len]=temp.grade;
+        stu.id[stu.len]=temp.id;
+        stu.name[stu.len]=temp.name;
+        ++stu.len;
+}
+//of course the menu
+void menu()
+{
+    cout<<"0.exit\n1.insert\n2.delete\n3.Display\n4.Delete\n5.push_back";
+}
